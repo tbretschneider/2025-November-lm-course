@@ -23,7 +23,24 @@ uv run python -m scripts.pretrain --experiment=default (or any other experiment,
 2. Run the following code in a cell: 
 
 ```python
+from google.colab import drive
+import os
+drive.mount('/content/drive')
+work_dir = '/content/drive/MyDrive/colab-projects'
+os.makedirs(work_dir, exist_ok=True)
+os.chdir(work_dir)
+if not os.path.exists('lm-course'):
+    !git clone https://github.com/cottascience/lm-course.git
+os.chdir('lm-course')
+!git config --global user.email "your-email@example.com"
+!git config --global user.name "Your Name"
+!pip install colab-ssh
+from colab_ssh import launch_ssh_cloudflared
+import getpass
+password = getpass.getpass("Enter SSH password: ")
+launch_ssh_cloudflared(password=password)
 
+```
 
 
 ## Course Structure
