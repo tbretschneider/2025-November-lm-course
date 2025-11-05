@@ -16,7 +16,6 @@ class BPETokenizer(Tokenizer):
     @property
     def eos_token_id(self) -> int:
         return 129
-
     @property
     def eos_token(self) -> str:
         return "<EOS>"
@@ -84,7 +83,7 @@ class BPETokenizer(Tokenizer):
             indices = [i for i in range(len(s))] 
             encodedtokens = [None for i in range(len(s))] 
             for i in range(len(s)):
-                for j in range(max_len,0):
+                for j in range(max_len,0,-1):
                     if s[i:i+j] in self.vocab:
                         s = s[:i] + s[i+j:]
                         encodedtokens[i] = self.tokens.index(s[i:i+j])
