@@ -85,8 +85,8 @@ class BPETokenizer(Tokenizer):
             for i in range(len(s)):
                 for j in range(max_len,0,-1):
                     if s[i:i+j] in self.vocab:
+                        encodedtokens[indices[i]] = self.tokens.index(s[i:i+j])
                         s = s[:i] + s[i+j:]
-                        encodedtokens[i] = self.tokens.index(s[i:i+j])
                         indices = indices[:i]+indices[i+j:]
 
             tokens = [x for x in encodedtokens if x is not None]
